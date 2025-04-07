@@ -16,6 +16,9 @@
 *   **Theme Aware:** Adapts to light and dark modes.
 
 ## Screenshots
+<img src="https://github.com/user-attachments/assets/75252147-0029-425e-9662-3d30d063aecf" width="300">
+<img src="https://github.com/user-attachments/assets/33126385-4a14-4a39-a4e2-2868f1a77ad7" width="300">
+
 
 ## How It Works
 
