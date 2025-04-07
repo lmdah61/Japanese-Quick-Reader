@@ -72,7 +72,7 @@ class SettingsScreen extends StatelessWidget {
                         Get.snackbar(
                           'Info',
                           'API key cleared. Using built-in examples.',
-                          snackPosition: SnackPosition.BOTTOM,
+                          snackPosition: SnackPosition.TOP,
                           duration: const Duration(seconds: 2),
                         );
                       },
@@ -112,43 +112,7 @@ class SettingsScreen extends StatelessWidget {
 
           // Theme Selection section removed
 
-          // Premium Upgrade
-          _buildSection(
-            title: 'Premium',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Obx(
-                  () => SwitchListTile(
-                    title: const Text('Show Advertisements'),
-                    subtitle: const Text(
-                      'Support the app with ads or upgrade to premium',
-                    ),
-                    value: controller.showAds.value,
-                    onChanged: controller.toggleAds,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Center(
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.star),
-                    label: const Text('Upgrade to Premium'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
-                      ),
-                    ),
-                    onPressed: () {
-                      controller.purchasePremium();
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Premium section removed
 
           // Apply Settings Button
           Padding(

@@ -30,7 +30,7 @@ class HomeController extends GetxController {
   var isLoading = false.obs; // For text generation
   var selectedWord = ''.obs;
   var dictionaryUrl = ''.obs; // URL for the WebView
-  var textSize = 18.0.obs; // Font size for Japanese text display
+  var textSize = 22.0.obs; // Font size for Japanese text display
   var splitRatio = 0.6.obs; // Ratio for splitting text/WebView areas
   var showTranslation = false.obs; // Toggle for showing English translation
   var isWebViewLoading = false.obs; // Loading state for the WebView
@@ -87,7 +87,7 @@ class HomeController extends GetxController {
     }
 
     // Load UI preferences
-    textSize.value = _box.read<double>(_textSizeKey) ?? 18.0;
+    textSize.value = _box.read<double>(_textSizeKey) ?? 22.0;
     splitRatio.value = _box.read<double>(_splitRatioKey) ?? 0.6;
   }
 
@@ -126,7 +126,7 @@ class HomeController extends GetxController {
                   Get.snackbar(
                     'Dictionary Error',
                     'Failed to load dictionary page. Please check connection.',
-                    snackPosition: SnackPosition.BOTTOM,
+                    snackPosition: SnackPosition.TOP,
                   );
                 },
               ),
@@ -137,7 +137,7 @@ class HomeController extends GetxController {
       Get.snackbar(
         'Error',
         'Could not initialize dictionary view.',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red.withOpacity(0.8),
         colorText: Colors.white,
       );
@@ -315,7 +315,7 @@ class HomeController extends GetxController {
       Get.snackbar(
         'Dictionary Error',
         'Failed to initiate word lookup.',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red.withOpacity(0.8),
         colorText: Colors.white,
       );
@@ -422,7 +422,7 @@ class HomeController extends GetxController {
       errorInfo['title'],
       errorInfo['message'],
       duration: const Duration(seconds: 5),
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
       backgroundColor: (errorInfo['color'] as Color).withOpacity(0.8),
       colorText: Colors.white,
     );

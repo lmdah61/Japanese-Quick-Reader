@@ -10,7 +10,6 @@ const String _jlptLevelKey = 'jlptLevel';
 const String _topicKey = 'topic';
 const String _apiKeyKey = 'apiKey';
 const String _themeKey = 'theme';
-const String _showAdsKey = 'showAds';
 
 // Constants for theme options for clarity and safety
 const String _themeSystem = 'System';
@@ -25,7 +24,6 @@ class SettingsController extends GetxController {
   // Use late final for observables initialized in onInit
   late final RxString selectedJlptLevel;
   late final RxString selectedTopic;
-  late final RxBool showAds;
   late final RxString apiKey;
   late final RxString selectedTheme;
   // Reactive ThemeMode derived from selectedTheme string
@@ -93,7 +91,6 @@ class SettingsController extends GetxController {
     selectedTopic = RxString(_box.read<String>(_topicKey) ?? topics.first);
     apiKey = RxString(_box.read<String>(_apiKeyKey) ?? '');
     selectedTheme = RxString(_box.read<String>(_themeKey) ?? _themeSystem);
-    showAds = RxBool(_box.read<bool>(_showAdsKey) ?? true);
 
     // Initialize AITextService API key if available
     if (apiKey.value.isNotEmpty) {
@@ -106,7 +103,6 @@ class SettingsController extends GetxController {
     _box.write(_jlptLevelKey, selectedJlptLevel.value);
     _box.write(_topicKey, selectedTopic.value);
     _box.write(_themeKey, selectedTheme.value);
-    _box.write(_showAdsKey, showAds.value);
     _box.write(_apiKeyKey, apiKey.value);
     // GetStorage saves automatically, _box.save() is rarely needed.
   }
@@ -150,46 +146,7 @@ class SettingsController extends GetxController {
     }
   }
 
-  void toggleAds(bool value) {
-    showAds.value = value;
-    _saveSettings();
-  }
-
-  Future<void> purchasePremium() async {
-    // Show loading indicator
-    Get.dialog(
-      const Center(child: CircularProgressIndicator()),
-      barrierDismissible: false, // Prevent dismissing by tapping outside
-    );
-
-    try {
-      // Simulate network request or purchase flow
-      await Future.delayed(const Duration(seconds: 1));
-
-      // Update state on success
-      showAds.value = false;
-      _saveSettings();
-
-      Get.back(); // Close the loading dialog
-
-      Get.snackbar(
-        'Success',
-        'Premium upgrade successful! Ads removed.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.8),
-        colorText: Colors.white,
-      );
-    } catch (e) {
-      Get.back(); // Close the loading dialog on error
-      Get.snackbar(
-        'Error',
-        'Purchase failed. Please try again.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
-        colorText: Colors.white,
-      );
-    }
-  }
+  // Premium functionality removed
 
   void updateApiKey(String newApiKey) {
     // Trim whitespace
@@ -200,7 +157,7 @@ class SettingsController extends GetxController {
       Get.snackbar(
         'Invalid API Key',
         'The API key appears too short. Please check and try again.',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.orange.withOpacity(0.9),
         colorText: Colors.white,
         duration: const Duration(seconds: 4),
@@ -217,7 +174,7 @@ class SettingsController extends GetxController {
       Get.snackbar(
         'API Key Saved',
         'Your API key has been updated.',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green.withOpacity(0.8),
         colorText: Colors.white,
         duration: const Duration(seconds: 3),
@@ -226,7 +183,7 @@ class SettingsController extends GetxController {
       Get.snackbar(
         'API Key Cleared',
         'Your API key has been removed.',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         duration: const Duration(seconds: 3),
       );
     }
