@@ -41,11 +41,12 @@ This is a standard Flutter project.
     ```bash
     flutter pub get
     ```
-3.  **Configure AI Service:**
-    *   Navigate to the Settings screen within the app.
-    *   Enter your API key for the AI text generation service.
-4.  **Run the app:**
+3.  **Run the app:**
     ```bash
     flutter run
     ```
+4.  **Configure AI Service:**
+    *   Navigate to the Settings screen within the app.
+    *   Enter your API key for the AI text generation service.
+      
 <sub>**Leave a Tip:** opulentmenu06@walletofsatoshi.com</sub>
